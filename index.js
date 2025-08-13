@@ -6,10 +6,10 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 
+// Weather API route
 app.get("/api/weather", async (req, res) => {
   const city = req.query.city;
-  
-  // ✅ Validate city name
+
   if (!city) {
     return res.status(400).json({ error: "City is required" });
   }
@@ -27,5 +27,6 @@ app.get("/api/weather", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+// Use Render PORT
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
